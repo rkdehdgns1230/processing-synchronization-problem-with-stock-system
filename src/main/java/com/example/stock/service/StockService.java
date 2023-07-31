@@ -1,5 +1,5 @@
 package com.example.stock.service;
 
 public interface StockService {
-    void decrease(Long id, Long quantity);
+    void decrease(Long productId, Long quantity);
 }
