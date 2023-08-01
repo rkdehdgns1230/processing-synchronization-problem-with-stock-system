@@ -17,7 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 class NamedLockStockFacadeTest {
     @Autowired
-    OptimisticLockStockFacade optimisticLockStockFacade;
+    NamedLockStockFacade namedLockStockFacade;
     @Autowired
     StockRepository stockRepository;
 
@@ -47,9 +47,7 @@ class NamedLockStockFacadeTest {
         for(int i = 0; i < threadCount; i++){
             executorService.submit(() -> {
                 try {
-                    optimisticLockStockFacade.decrease(STOCK_PRODUCT_ID, 1L);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
+                    namedLockStockFacade.decrease(STOCK_PRODUCT_ID, 1L);
                 } finally{
                     latch.countDown(); // count 1씩 감소
                 }

@@ -16,7 +16,7 @@ public class StockServiceImpl implements StockService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public synchronized void decrease(Long id, Long quantity){
+    public void decrease(Long id, Long quantity){
         Stock findStock = stockRepository.findById(id).orElseThrow();
         findStock.decrease(quantity);
         stockRepository.saveAndFlush(findStock);
