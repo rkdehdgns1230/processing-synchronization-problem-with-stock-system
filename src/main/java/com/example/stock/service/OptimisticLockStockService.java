@@ -9,9 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @RequiredArgsConstructor
 @Transactional
-public class OptimisticLockStockService implements StockService{
+public class OptimisticLockStockService {
     private final StockRepository stockRepository;
-    @Override
+//    @Override
     public void decrease(Long productId, Long quantity) {
         Stock stock = stockRepository.findByProductIdWithOptimisticLock(productId);
         stock.decrease(quantity);
